@@ -1,0 +1,55 @@
+﻿@model PersonProfileViewModel
+
+<div class="row">
+    <div class="offset-1 col-10">
+
+        @{  bool isExperienceEmpty = true; }
+        @if (Model.Experience != ExperienceEnum.None)
+        {
+            isExperienceEmpty = false;
+            <div class="experience experience-item">
+                <h6 class="title">Досвід</h6>
+                <p class="content">@Model.Experience.GetDescription()</p>
+            </div>
+        }
+
+        @if (Model.PresentCompanies != null && Model.PresentCompanies.Count != 0)
+        {
+            isExperienceEmpty = false;
+            <div class="present-companies experience-item">
+                <h6 class="title">Існуючі компанії</h6>
+                @foreach (var company in Model.PresentCompanies)
+                {
+                    <p class="content">@company</p>
+                }
+            </div>
+        }
+
+        @if (Model.PastCompanies != null && Model.PastCompanies.Count != 0)
+        {
+            isExperienceEmpty = false;
+            <div class="past-companies experience-item">
+                <h6 class="title">Минулі компанії</h6>
+                @foreach (var company in Model.PastCompanies)
+                {
+                    <p class="content">@company</p>
+                }
+            </div>
+        }
+
+        @if (Model.Industry != IndustryEnum.None)
+        {
+            isExperienceEmpty = false;
+            <div class="connected-with experience-item">
+                <h6 class="title">З'єднаний з</h6>
+                <p class="content">@Model.Industry.GetDescription()</p>
+            </div>
+        }
+
+        @if (isExperienceEmpty)
+        {
+            <h4 class="text-center">Користувач не має інформацію про його досвід</h4>
+        }
+
+    </div>
+</div>
